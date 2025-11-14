@@ -10,8 +10,10 @@
   <meta property="og:title" content="@iyoolaoyabiyi :: Frontend Engineer" />
   <meta property="og:description" content="Performance-focused frontend engineer and mobile developer. Explore HNG projects, real-time apps, and accessible UIs." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://host.iyoolaoyabiyi.com" />
-  <meta property="og:image" content="https://host.iyoolaoyabiyi.com/og-image.jpg" />
+  <meta property="og:url" content="https://iyoolaoyabiyi.github.io/hng-13-resume/" />
+  <meta property="og:image" content="https://iyoolaoyabiyi.github.io/hng-13-resume/og-image.svg" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
 
   <script>
     (() => {
@@ -32,7 +34,7 @@
     "@type": "Person",
     "name": "Iyo Oyabiyi Olálékan",
     "jobTitle": "Frontend Engineer",
-    "url": "https://host.iyoolaoyabiyi.com",
+    "url": "https://iyoolaoyabiyi.github.io/hng-13-resume/",
     "sameAs": [
       "https://github.com/iyoolaoyabiyi"
     ],
@@ -162,6 +164,11 @@
               <p class="project-description">
                 A semantic profile site optimized for Lighthouse and automated tests.
               </p>
+              <ul class="project-list">
+                <li>Split the narrative into 3 themed pages connected with skip links and persistent breadcrumbs.</li>
+                <li>Shipped axe-clean markup and 98+ Lighthouse scores by auditing contrast, focus order, and aria usage.</li>
+                <li>Playwright smoke tests ensure responsive layouts hold up down to 320px devices.</li>
+              </ul>
               <footer class="project-footer">
                 <span class="rating">Skill level: ★★★★☆</span>
               </footer>
@@ -180,6 +187,11 @@
               <p class="project-description">
                 A CRUD app implemented in three frameworks with shared design tokens.
               </p>
+              <ul class="project-list">
+                <li>Abstracted table/form/toast primitives so React, Vue, and Twig share the same UI contract.</li>
+                <li>Backed every mutation with JSON Schema validation + Faker fixtures to mimic a live ticket API.</li>
+                <li>Audited performance budgets to keep each build under 80&nbsp;KB gzipped.</li>
+              </ul>
               <footer class="project-footer">
                 <span class="rating">Skill level: ★★★★☆</span>
               </footer>
@@ -222,8 +234,9 @@
                 A cross-platform todo app with real-time sync, theme switching, and drag-and-drop.
               </p>
               <ul class="project-list">
-                <li>Real-time queries and mutations.</li>
-                <li>Gesture-based reordering.</li>
+                <li>Convex live queries keep tasks synced across devices without manual polling.</li>
+                <li>Reanimated + gesture-handler deliver drag-and-drop reordering with subtle haptics.</li>
+                <li>Offline queue retries pending writes so no todos vanish if the network drops.</li>
               </ul>
               <footer class="project-footer">
                 <span class="rating">Skill level: ★★★★☆</span>
@@ -244,6 +257,11 @@
               <p class="project-description">
                 A social posting app with authenticated feed, media uploads, likes, and notifications.
               </p>
+              <ul class="project-list">
+                <li>Supabase auth + row level security lock down user data while still enabling public discovery.</li>
+                <li>Expo Router screens stream next feed batch before users scroll for perceived instant loading.</li>
+                <li>Push notification preferences let users pick digests, mentions only, or mute entirely.</li>
+              </ul>
               <footer class="project-footer">
                 <span class="rating">Skill level: ★★★★☆</span>
               </footer>
