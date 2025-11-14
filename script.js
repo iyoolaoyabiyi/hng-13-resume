@@ -6,6 +6,10 @@ const submitButton = document.getElementById("review-submit-button");
 const formStatus = document.getElementById("form-status");
 const yearEl = document.getElementById("year");
 const metaConvexUrl = document.querySelector('meta[name="convex-url"]');
+const themeToggle = document.getElementById("theme-toggle");
+const themeToggleIcon = themeToggle?.querySelector(".theme-toggle-icon");
+const themeToggleLabel = themeToggle?.querySelector(".theme-toggle-label");
+const THEME_STORAGE_KEY = "theme";
 
 if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
@@ -20,6 +24,8 @@ if (CONVEX_URL) {
 } else {
   showMissingConfigMessage();
 }
+
+initializeThemeToggle();
 
 reviewForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -126,9 +132,9 @@ function showMissingConfigMessage() {
 function setStatus(message, type) {
   if (!formStatus) return;
   formStatus.textContent = message;
-  formStatus.classList.add(message
-    ? `${type === "error" ? "status--error" : "status--success"}`
-    : "hidden")
+  formStatus.className = message
+    ? `status ${type === "error" ? "status--error" : "status--success"}`
+    : "status";
 }
 
 function setSubmitting(isSubmitting) {
@@ -140,6 +146,42 @@ function setSubmitting(isSubmitting) {
     submitButton.disabled = false;
     submitButton.textContent = "Send Review";
   }
+}
+
+function initializeThemeToggle() {
+  if (!themeToggle) return;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const applyTheme = (theme, persist = false) => {
+    document.documentElement.dataset.theme = theme;
+    if (persist) {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    }
+    if (themeToggle) {
+      const isDark = theme === "dark";
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      if (themeToggleIcon) {
+        themeToggleIcon.textContent = isDark ? "🌙" : "☀️";
+      }
+      if (themeToggleLabel) {
+        themeToggleLabel.textContent = isDark ? "Dark mode" : "Light mode";
+      }
+    }
+  };
+
+  const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  const initialTheme = storedTheme || document.documentElement.dataset.theme || (media.matches ? "dark" : "light");
+  applyTheme(initialTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme, true);
+  });
+
+  media.addEventListener("change", (event) => {
+    if (localStorage.getItem(THEME_STORAGE_KEY)) return;
+    applyTheme(event.matches ? "dark" : "light");
+  });
 }
 
 async function resolveConvexUrl() {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <title>@iyoolaoyabiyi :: Frontend Engineer & Mobile Developer</title>
@@ -13,6 +13,16 @@
   <meta property="og:url" content="https://host.iyoolaoyabiyi.com" />
   <meta property="og:image" content="https://host.iyoolaoyabiyi.com/og-image.jpg" />
 
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      if (saved === "light" || saved === "dark") {
+        document.documentElement.dataset.theme = saved;
+      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="./style.css">
   
   <!-- Structured data (Person + WebSite) -->
@@ -44,7 +54,7 @@
 
   <div class="page">
     <div class="page-inner">
-      <header class="main-header">
+      <header class="site-header">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"><span>Iyo</span></div>
           <div class="brand-text">
@@ -63,6 +73,10 @@
             Leave a Review
             <span aria-hidden="true">↘</span>
           </a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
+            <span class="theme-toggle-label">Light mode</span>
+          </button>
         </nav>
       </header>
 
@@ -126,8 +140,25 @@
         <section class="projects" id="projects" aria-label="Selected projects">
           <h2 class="section-heading">HNG projects</h2>
           <div class="bento-grid">
-            
-            <article class="bento-item" data-col="span-2" data-row="span-2">
+            <article class="bento-item">
+              <header>
+                <p class="project-kicker">Stage 1–2 • Web</p>
+                <h3 class="project-title">myTickets Manager</h3>
+                <p class="project-meta">
+                  <span class="project-tag">React</span>
+                  <span class="project-tag">Vue</span>
+                  <span class="project-tag">Twig</span>
+                </p>
+              </header>
+              <p class="project-description">
+                A CRUD app implemented in three frameworks with shared design tokens.
+              </p>
+              <footer class="project-footer">
+                <span class="rating">Skill level: ★★★★☆</span>
+              </footer>
+            </article>
+
+            <article class="bento-item">
               <header>
                 <p class="project-kicker">Stage 3 • Web</p>
                 <h3 class="project-title">Audiophile E-commerce (Next.js + Convex)</h3>
@@ -150,25 +181,7 @@
               </footer>
             </article>
 
-            <article class="bento-item" data-col="span-1" data-row="span-1">
-              <header>
-                <p class="project-kicker">Stage 0 • Web</p>
-                <h3 class="project-title">Multi-page Profile Card</h3>
-                <p class="project-meta">
-                  <span class="project-tag">HTML</span>
-                  <span class="project-tag">CSS</span>
-                  <span class="project-tag">Accessibility</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A semantic profile site optimized for Lighthouse and automated tests.
-              </p>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item" data-col="span-1" data-row="span-2">
+            <article class="bento-item">
               <header>
                 <p class="project-kicker">Stage 4 • Mobile</p>
                 <h3 class="project-title">Todo App (Expo + Convex)</h3>
@@ -190,25 +203,7 @@
               </footer>
             </article>
 
-            <article class="bento-item" data-col="span-1" data-row="span-1">
-              <header>
-                <p class="project-kicker">Stage 1–2 • Web</p>
-                <h3 class="project-title">myTickets Manager</h3>
-                <p class="project-meta">
-                  <span class="project-tag">React</span>
-                  <span class="project-tag">Vue</span>
-                  <span class="project-tag">Twig</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A CRUD app implemented in three frameworks with shared design tokens.
-              </p>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item" data-col="span-2" data-row="span-1">
+            <article class="bento-item">
               <header>
                 <p class="project-kicker">Stage 4+ • Mobile</p>
                 <h3 class="project-title">Framez Social App (Expo + Supabase)</h3>
@@ -221,6 +216,24 @@
               </header>
               <p class="project-description">
                 A social posting app with authenticated feed, media uploads, likes, and notifications.
+              </p>
+              <footer class="project-footer">
+                <span class="rating">Skill level: ★★★★☆</span>
+              </footer>
+            </article>
+
+            <article class="bento-item">
+              <header>
+                <p class="project-kicker">Stage 0 • Web</p>
+                <h3 class="project-title">Multi-page Profile Card</h3>
+                <p class="project-meta">
+                  <span class="project-tag">HTML</span>
+                  <span class="project-tag">CSS</span>
+                  <span class="project-tag">Accessibility</span>
+                </p>
+              </header>
+              <p class="project-description">
+                A semantic profile site optimized for Lighthouse and automated tests.
               </p>
               <footer class="project-footer">
                 <span class="rating">Skill level: ★★★★☆</span>
