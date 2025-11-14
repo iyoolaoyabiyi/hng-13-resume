@@ -1,4 +1,4 @@
-# Iyo Oyabiyi Olálékan
+# @iyoolaoyabiyi
 Frontend Engineer & Mobile Developer  
 📍 Remote (Nigeria) · 🌐 https://iyoolaoyabiyi.github.io/hng-13-resume/ · 👨🏽‍💻 @iyoolaoyabiyi on GitHub
 
