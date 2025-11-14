@@ -25,6 +25,7 @@
       }
     })();
   </script>
+  <link rel="stylesheet" href="./tokens.css">
   <link rel="stylesheet" href="./style.css">
   
   <!-- Structured data (Person + WebSite) -->
@@ -54,15 +55,15 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <div class="page">
+  <div class="page" id="top">
     <div class="page-inner">
       <header class="site-header" data-menu-open="false">
         <div class="site-header__left">
           <div class="brand">
-            <div class="brand-mark" aria-hidden="true"><span>Iyo</span></div>
+            <div class="brand-mark" aria-hidden="true"><span id="brand-initials"></span></div>
             <div class="brand-text">
-              <span class="brand-name">@iyoolaoyabiyi</span>
-              <span class="brand-tagline">Frontend engineer & Mobile developer</span>
+              <span class="brand-name" id="brand-name"></span>
+              <span class="brand-tagline" id="brand-tagline"></span>
             </div>
           </div>
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation-list">
@@ -72,18 +73,7 @@
           </button>
         </div>
         <nav aria-label="Primary" id="primary-navigation">
-          <ul class="nav-list" id="primary-navigation-list">
-            <li><a class="nav-link" href="#projects">Projects</a></li>
-            <li><a class="nav-link" href="#skills">Skills</a></li>
-            <li><a class="nav-link" href="#process">Process</a></li>
-            <li><a class="nav-link" href="#reviews">Reviews</a></li>
-            <li>
-              <a class="nav-link nav-link--cta" href="#reviews">
-                Leave a Review
-                <span aria-hidden="true">↘</span>
-              </a>
-            </li>
-          </ul>
+          <ul class="nav-list" id="primary-navigation-list"></ul>
         </nav>
       </header>
       <button id="theme-toggle" class="theme-toggle theme-toggle--floating" type="button" aria-pressed="false">
@@ -93,201 +83,29 @@
 
       <main id="main" class="content-stack">
         <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-main">
+          <div class="hero-main" id="hero-main">
             <div class="eyebrow">
               <span class="eyebrow-pill" aria-hidden="true">●</span>
-              Performance-focused frontend engineering with real project proof
+              Loading hero...
             </div>
-            <h1 id="hero-title">
-              I build <span class="highlight">fast, accessible</span> interfaces that survive production.
-            </h1>
-            <p class="hero-lead">
-              I am a frontend engineer and mobile developer who cares about
-              <strong>semantic HTML, real-world performance, and UI consistency</strong> across frameworks.
-              During the HNG internship I delivered production-grade projects in React, Vue, Twig, Next.js, Expo, Convex, and Supabase.
-            </p>
-            <div class="hero-actions">
-              <a class="btn-primary" href="#projects">
-                View HNG project work
-              </a>
-              <a class="btn-ghost" href="#reviews">
-                Leave feedback on my work
-              </a>
-            </div>
-            <dl class="hero-meta" aria-label="Key strengths">
-              <div class="hero-meta-item">
-                <dt class="hero-meta-label">Primary focus</dt>
-                <dd class="hero-meta-value">
-                  <strong>Frontend and mobile</strong> with performance and accessibility as defaults.
-                </dd>
-              </div>
-              <div class="hero-meta-item">
-                <dt class="hero-meta-label">Tooling</dt>
-                <dd class="hero-meta-value">
-                  React, React Native, Next.js, Vue, Twig, Expo, Convex, Supabase, Tailwind, Chakra UI.
-                </dd>
-              </div>
-            </dl>
+            <h1 id="hero-title">Loading portfolio...</h1>
           </div>
           
           <aside class="hero-aside" aria-labelledby="skills">
-            <section class="panel" aria-label="Key skills">
+            <section class="panel" aria-label="Key skills" id="skills-panel">
               <div class="panel-heading">
-                <h2 id="skills">Core skills</h2>
-                <span class="panel-tag">HNG Internship</span>
-              </div>
-              <div class="skills-grid">
-                <div class="skill-chip"><span class="skill-label">Accessibility</span><span class="skill-strength">Advanced</span></div>
-                <div class="skill-chip"><span class="skill-label">Performance</span><span class="skill-strength">Advanced</span></div>
-                <div class="skill-chip"><span class="skill-label">React / RN / Expo</span><span class="skill-strength">Advanced</span></div>
-                <div class="skill-chip"><span class="skill-label">Next.js</span><span class="skill-strength">Advanced</span></div>
-                <div class="skill-chip"><span class="skill-label">Vue / Twig</span><span class="skill-strength">Intermediate</span></div>
-                <div class="skill-chip"><span class="skill-label">Convex / Supabase</span><span class="skill-strength">Intermediate</span></div>
+                <h2 id="skills">Skills</h2>
               </div>
             </section>
           </aside>
         </section>
 
         <section class="projects" id="projects" aria-label="Selected projects">
-          <h2 class="section-heading">HNG projects</h2>
-          <div class="bento-grid">
-            <article class="bento-item">
-              <header>
-                <p class="project-kicker">Stage 0-1 • Web</p>
-                <h3 class="project-title">Multi-page Profile Card</h3>
-                <p class="project-meta">
-                  <span class="project-tag">HTML</span>
-                  <span class="project-tag">CSS</span>
-                  <span class="project-tag">Accessibility</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A semantic profile site optimized for Lighthouse and automated tests.
-              </p>
-              <ul class="project-list">
-                <li>Split the narrative into 3 themed pages connected with skip links and persistent breadcrumbs.</li>
-                <li>Shipped axe-clean markup and 98+ Lighthouse scores by auditing contrast, focus order, and aria usage.</li>
-                <li>Playwright smoke tests ensure responsive layouts hold up down to 320px devices.</li>
-              </ul>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item">
-              <header>
-                <p class="project-kicker">Stage 2 • Web</p>
-                <h3 class="project-title">myTickets Manager</h3>
-                <p class="project-meta">
-                  <span class="project-tag">React</span>
-                  <span class="project-tag">Vue</span>
-                  <span class="project-tag">Twig</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A CRUD app implemented in three frameworks with shared design tokens.
-              </p>
-              <ul class="project-list">
-                <li>Abstracted table/form/toast primitives so React, Vue, and Twig share the same UI contract.</li>
-                <li>Backed every mutation with JSON Schema validation + Faker fixtures to mimic a live ticket API.</li>
-                <li>Audited performance budgets to keep each build under 80&nbsp;KB gzipped.</li>
-              </ul>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item">
-              <header>
-                <p class="project-kicker">Stage 3A • Web</p>
-                <h3 class="project-title">Audiophile E-commerce (Next.js + Convex)</h3>
-                <p class="project-meta">
-                  <span class="project-tag">Next.js</span>
-                  <span class="project-tag">TypeScript</span>
-                  <span class="project-tag">Convex</span>
-                  <span class="project-tag">Chakra UI</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A pixel-perfect storefront with a full checkout flow, order persistence, and transactional email, following an atomic design component system.
-              </p>
-              <ul class="project-list">
-                <li>Typed API routes with Zod validation and Redux-based cart.</li>
-                <li>Atomic components and layout templates tuned for performance.</li>
-              </ul>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item">
-              <header>
-                <p class="project-kicker">Stage 3B • Mobile</p>
-                <h3 class="project-title">Todo App (Expo + Convex)</h3>
-                <p class="project-meta">
-                  <span class="project-tag">React Native</span>
-                  <span class="project-tag">Expo</span>
-                  <span class="project-tag">Convex</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A cross-platform todo app with real-time sync, theme switching, and drag-and-drop.
-              </p>
-              <ul class="project-list">
-                <li>Convex live queries keep tasks synced across devices without manual polling.</li>
-                <li>Reanimated + gesture-handler deliver drag-and-drop reordering with subtle haptics.</li>
-                <li>Offline queue retries pending writes so no todos vanish if the network drops.</li>
-              </ul>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-
-            <article class="bento-item">
-              <header>
-                <p class="project-kicker">Stage 4+ • Mobile</p>
-                <h3 class="project-title">Framez Social App (Expo + Supabase)</h3>
-                <p class="project-meta">
-                  <span class="project-tag">Expo Router</span>
-                  <span class="project-tag">Supabase</span>
-                  <span class="project-tag">Auth</span>
-                  <span class="project-tag">Notifications</span>
-                </p>
-              </header>
-              <p class="project-description">
-                A social posting app with authenticated feed, media uploads, likes, and notifications.
-              </p>
-              <ul class="project-list">
-                <li>Supabase auth + row level security lock down user data while still enabling public discovery.</li>
-                <li>Expo Router screens stream next feed batch before users scroll for perceived instant loading.</li>
-                <li>Push notification preferences let users pick digests, mentions only, or mute entirely.</li>
-              </ul>
-              <footer class="project-footer">
-                <span class="rating">Skill level: ★★★★☆</span>
-              </footer>
-            </article>
-          </div>
+          <h2 class="section-heading" id="projects-heading">Projects</h2>
+          <div class="bento-grid" id="projects-grid"></div>
         </section>
 
-        <section class="process" id="process" aria-label="How I approach frontend work">
-          <div class="process-card">
-            <h3>How I approach frontend development</h3>
-            <p>
-              Every project starts with clarity. I define the outcome, map a single primary user path, then design the UI and architecture around that path.
-            </p>
-            <ul class="process-list">
-              <li><strong>Design-led architecture.</strong> Components and routes follow a clear inventory rather than improvisation.</li>
-              <li><strong>Performance from the start.</strong> Minimal dependencies, simple layouts, fast first paint.</li>
-              <li><strong>Accessibility baked in.</strong> Semantics, focus, labels, and error messaging are part of the initial build.</li>
-            </ul>
-          </div>
-          <div class="process-card">
-            <h3>Stacks I am confident with</h3>
-            <p>
-              On the web, I work comfortably with React, Next.js, Vue, Twig templates, and modern vanilla JavaScript. On mobile, I work with React Native and Expo, backed by Convex or Supabase for real-time data.
-            </p>
-          </div>
-        </section>
+        <section class="process" id="process" aria-label="Process overview"></section>
         
         <section class="reviews-section" id="reviews" aria-labelledby="reviews-heading">
           <h2 class="section-heading" id="reviews-heading">Reviews</h2>
@@ -302,10 +120,8 @@
             </div>
 
             <div class="form-card">
-              <h3>Leave a Review</h3>
-              <p class="form-helper">
-                Let me know what you think of my work or this portfolio.
-              </p>
+              <h3 id="review-form-title">Leave a Review</h3>
+              <p class="form-helper" id="review-form-helper">Let me know what you think of my work or this portfolio.</p>
               <form id="review-form" novalidate>
                 <div class="field">
                   <label for="review-name">HNG Username</label>
@@ -348,8 +164,8 @@
 
     <footer>
       <div class="footer-inner">
-        <span>© <span id="year"></span> @iyoolaoyabiyi. Built with a focus on performance and accessibility.</span>
-        <span><a href="#top">Back to top</a></span>
+        <span id="footer-text">© <span id="year"></span></span>
+        <span><a href="#top" id="back-to-top-link">Back to top</a></span>
       </div>
     </footer>
   </div>

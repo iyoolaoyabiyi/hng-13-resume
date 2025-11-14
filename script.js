@@ -4,32 +4,41 @@ const reviewsContainer = document.getElementById("reviews-list-container");
 const placeholder = document.getElementById("reviews-placeholder");
 const submitButton = document.getElementById("review-submit-button");
 const formStatus = document.getElementById("form-status");
-const yearEl = document.getElementById("year");
 const metaConvexUrl = document.querySelector('meta[name="convex-url"]');
 const themeToggle = document.getElementById("theme-toggle");
 const themeToggleIcon = themeToggle?.querySelector(".theme-toggle-icon");
 const themeToggleLabel = themeToggle?.querySelector(".theme-toggle-label");
 const navToggle = document.getElementById("nav-toggle");
 const siteHeader = document.querySelector(".site-header");
-const navLinks = document.querySelectorAll(".nav-list a");
+const navList = document.getElementById("primary-navigation-list");
+const brandInitialsEl = document.getElementById("brand-initials");
+const brandNameEl = document.getElementById("brand-name");
+const brandTaglineEl = document.getElementById("brand-tagline");
+const heroMain = document.getElementById("hero-main");
+const skillsPanel = document.getElementById("skills-panel");
+const projectsHeadingEl = document.getElementById("projects-heading");
+const projectsGrid = document.getElementById("projects-grid");
+const processSection = document.getElementById("process");
+const reviewsHeadingEl = document.getElementById("reviews-heading");
+const reviewFormTitleEl = document.getElementById("review-form-title");
+const reviewFormHelperEl = document.getElementById("review-form-helper");
+const footerTextEl = document.getElementById("footer-text");
+const backToTopLink = document.getElementById("back-to-top-link");
+const CONTENT_PATH = "./content.json";
+const DEFAULT_CONVEX_URL = "https://savory-beagle-529.convex.cloud";
 const THEME_STORAGE_KEY = "theme";
+let submitButtonDefaultText = submitButton?.textContent?.trim() || "Send Review";
+let client = null;
 
-if (yearEl) {
-  yearEl.textContent = String(new Date().getFullYear());
-}
+const contentPromise = loadAndRenderSiteContent();
+const reviewSetupPromise = setupReviews();
 
-const CONVEX_URL = "https://savory-beagle-529.convex.cloud";
-  const client = new convex.ConvexClient(CONVEX_URL);
-
-if (CONVEX_URL) {
-  await hydrateReviews(client);
-  subscribeToReviews(client);
-} else {
-  showMissingConfigMessage();
-}
-
+await contentPromise;
 initializeNavToggle();
 initializeThemeToggle();
+updateYear();
+
+await reviewSetupPromise;
 
 reviewForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -74,6 +83,30 @@ reviewForm?.addEventListener("submit", async (event) => {
     setSubmitting(false);
   }
 });
+
+async function setupReviews() {
+  try {
+    if (typeof convex === "undefined") {
+      console.warn("Convex client not available on window.");
+      showMissingConfigMessage();
+      return;
+    }
+
+    const resolvedUrl = await resolveConvexUrl();
+    const urlToUse = resolvedUrl || DEFAULT_CONVEX_URL;
+    if (!urlToUse) {
+      showMissingConfigMessage();
+      return;
+    }
+
+    client = new convex.ConvexClient(urlToUse);
+    await hydrateReviews(client);
+    subscribeToReviews(client);
+  } catch (error) {
+    console.error("Failed to initialize reviews:", error);
+    showMissingConfigMessage();
+  }
+}
 
 function subscribeToReviews(convexClient) {
   convexClient.onUpdate("reviews:getReviews", {}, renderReviews, handleReviewError);
@@ -148,7 +181,252 @@ function setSubmitting(isSubmitting) {
     submitButton.textContent = "Submitting...";
   } else {
     submitButton.disabled = false;
-    submitButton.textContent = "Send Review";
+    submitButton.textContent = submitButtonDefaultText;
+  }
+}
+
+async function loadAndRenderSiteContent() {
+  try {
+    const response = await fetch(CONTENT_PATH, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`Failed to load content: ${response.status} ${response.statusText}`);
+    }
+    const content = await response.json();
+    applySiteContent(content);
+  } catch (error) {
+    console.error("Failed to load site content:", error);
+  }
+}
+
+function applySiteContent(content) {
+  if (!content) return;
+  updateSiteMeta(content.site);
+  renderBrand(content.site?.brand);
+  renderNavigation(content.navigation);
+  renderHero(content.hero);
+  renderSkills(content.skills);
+  renderProjects(content.projects);
+  renderProcess(content.process);
+  renderReviewsSection(content.reviewsSection);
+  renderFooter(content.footer);
+}
+
+function renderBrand(brand) {
+  if (!brand) return;
+  if (brandInitialsEl) {
+    brandInitialsEl.textContent = brand.initials || "";
+  }
+  if (brandNameEl) {
+    brandNameEl.textContent = brand.name || "";
+  }
+  if (brandTaglineEl) {
+    brandTaglineEl.textContent = brand.tagline || "";
+  }
+}
+
+function renderNavigation(items = []) {
+  if (!navList) return;
+  navList.innerHTML = items
+    .map((item) => {
+      const variantClass = item.variant === "cta" ? " nav-link--cta" : "";
+      const icon = item.icon ? ` <span aria-hidden="true">${item.icon}</span>` : "";
+      return `<li><a class="nav-link${variantClass}" href="${item.href || "#"}">${item.label || ""}${icon}</a></li>`;
+    })
+    .join("");
+}
+
+function renderHero(hero) {
+  if (!heroMain || !hero) return;
+  const actions = (hero.actions || [])
+    .map((action) => {
+      const variantClass = action.variant === "ghost" ? "btn-ghost" : "btn-primary";
+      return `<a class="${variantClass}" href="${action.href || "#"}">${action.label || ""}</a>`;
+    })
+    .join("");
+  const meta = (hero.meta || [])
+    .map(
+      (item) => `
+      <div class="hero-meta-item">
+        <dt class="hero-meta-label">${item.label || ""}</dt>
+        <dd class="hero-meta-value">${item.value || ""}</dd>
+      </div>
+    `
+    )
+    .join("");
+
+  heroMain.innerHTML = `
+    <div class="eyebrow">
+      <span class="eyebrow-pill" aria-hidden="true">●</span>
+      ${hero.eyebrow || ""}
+    </div>
+    <h1 id="hero-title">${hero.title || ""}</h1>
+    <p class="hero-lead">${hero.lead || ""}</p>
+    ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
+    ${
+      meta
+        ? `<dl class="hero-meta" aria-label="Key strengths">
+            ${meta}
+          </dl>`
+        : ""
+    }
+  `;
+}
+
+function renderSkills(skills) {
+  if (!skillsPanel || !skills) return;
+  const chips = (skills.items || [])
+    .map(
+      (item) =>
+        `<div class="skill-chip"><span class="skill-label">${item.label || ""}</span><span class="skill-strength">${item.strength || ""}</span></div>`
+    )
+    .join("");
+
+  skillsPanel.innerHTML = `
+    <div class="panel-heading">
+      <h2 id="skills">${skills.heading || ""}</h2>
+      ${skills.tag ? `<span class="panel-tag">${skills.tag}</span>` : ""}
+    </div>
+    <div class="skills-grid">${chips}</div>
+  `;
+}
+
+function renderProjects(projects) {
+  if (!projectsGrid || !projects) return;
+  if (projectsHeadingEl) {
+    projectsHeadingEl.textContent = projects.heading || "";
+  }
+  projectsGrid.innerHTML = (projects.items || [])
+    .map(
+      (project) => `
+      <article class="bento-item">
+        <header>
+          <p class="project-kicker">${project.kicker || ""}</p>
+          <h3 class="project-title">${project.title || ""}</h3>
+          ${
+            project.tags?.length
+              ? `<p class="project-meta">
+                ${project.tags.map((tag) => `<span class="project-tag">${tag}</span>`).join("")}
+              </p>`
+              : ""
+          }
+        </header>
+        <p class="project-description">
+          ${project.description || ""}
+        </p>
+        ${
+          project.bullets?.length
+            ? `<ul class="project-list">
+              ${project.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+            </ul>`
+            : ""
+        }
+        ${
+          project.score
+            ? `<footer class="project-footer">
+              <span class="project-score">Score: ${project.score}</span>
+            </footer>`
+            : ""
+        }
+      </article>
+    `
+    )
+    .join("");
+}
+
+function renderProcess(processContent) {
+  if (!processSection || !processContent) return;
+  if (processContent.ariaLabel) {
+    processSection.setAttribute("aria-label", processContent.ariaLabel);
+  }
+  processSection.innerHTML = (processContent.cards || [])
+    .map(
+      (card) => `
+      <div class="process-card">
+        <h3>${card.title || ""}</h3>
+        <p>
+          ${card.description || ""}
+        </p>
+        ${
+          card.bullets?.length
+            ? `<ul class="process-list">
+              ${card.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+            </ul>`
+            : ""
+        }
+      </div>
+    `
+    )
+    .join("");
+}
+
+function renderReviewsSection(reviewsSection) {
+  if (!reviewsSection) return;
+  if (reviewsHeadingEl && reviewsSection.heading) {
+    reviewsHeadingEl.textContent = reviewsSection.heading;
+  }
+  if (reviewFormTitleEl && reviewsSection.formTitle) {
+    reviewFormTitleEl.textContent = reviewsSection.formTitle;
+  }
+  if (reviewFormHelperEl && reviewsSection.formHelper) {
+    reviewFormHelperEl.textContent = reviewsSection.formHelper;
+  }
+  if (reviewsSection.submitLabel && submitButton) {
+    submitButtonDefaultText = reviewsSection.submitLabel;
+    submitButton.textContent = submitButtonDefaultText;
+  }
+}
+
+function renderFooter(footer) {
+  if (!footer) return;
+  if (footerTextEl && footer.text) {
+    const footerCopy = footer.text.replace(/{{\s*year\s*}}/gi, '<span id="year"></span>');
+    footerTextEl.innerHTML = footerCopy;
+  }
+  if (backToTopLink) {
+    backToTopLink.textContent = footer.backToTopLabel || "Back to top";
+    backToTopLink.setAttribute("href", footer.backToTopHref || "#top");
+  }
+  updateYear();
+}
+
+function updateSiteMeta(site) {
+  if (!site) return;
+  if (site.title) {
+    document.title = site.title;
+  }
+  if (site.description) {
+    const metaDescription = document.querySelector('meta[name="description"]');
+    metaDescription?.setAttribute("content", site.description);
+  }
+  if (site.theme && !localStorage.getItem(THEME_STORAGE_KEY)) {
+    document.documentElement.dataset.theme = site.theme;
+  }
+
+  if (site.meta) {
+    const { ogTitle, ogDescription, url, image } = site.meta;
+    if (ogTitle) {
+      const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+      ogTitleMeta?.setAttribute("content", ogTitle);
+    }
+    if (ogDescription) {
+      const ogDescriptionMeta = document.querySelector('meta[property="og:description"]');
+      ogDescriptionMeta?.setAttribute("content", ogDescription);
+    }
+    if (url) {
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+      ogUrlMeta?.setAttribute("content", url);
+    }
+    if (image) {
+      const ogImageMeta = document.querySelector('meta[property="og:image"]');
+      ogImageMeta?.setAttribute("content", image);
+    }
+  }
+}
+
+function updateYear() {
+  const yearEl = document.getElementById("year");
+  if (yearEl) {
+    yearEl.textContent = String(new Date().getFullYear());
   }
 }
 
@@ -201,12 +479,13 @@ function initializeNavToggle() {
     setMenuState(!isOpen);
   });
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.matchMedia("(max-width: 719px)").matches) {
-        setMenuState(false);
-      }
-    });
+  navList?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const link = target.closest("a");
+    if (link && window.matchMedia("(max-width: 719px)").matches) {
+      setMenuState(false);
+    }
   });
 
   window.addEventListener("resize", () => {

@@ -1,0 +1,155 @@
+{
+  "site": {
+    "title": "@iyoolaoyabiyi :: Frontend Engineer & Mobile Developer",
+    "description": "Frontend engineer and mobile developer focused on performance, accessibility, and cross-framework UI. View projects built with React, React Native, Next.js, Vue, Twig, Supabase, Convex, and more.",
+    "theme": "dark",
+    "brand": {
+      "initials": "Iyo",
+      "name": "@iyoolaoyabiyi",
+      "tagline": "Frontend engineer & Mobile developer"
+    },
+    "meta": {
+      "ogTitle": "@iyoolaoyabiyi :: Frontend Engineer",
+      "ogDescription": "Performance-focused frontend engineer and mobile developer. Explore HNG projects, real-time apps, and accessible UIs.",
+      "url": "https://iyoolaoyabiyi.github.io/hng-13-resume/",
+      "image": "https://iyoolaoyabiyi.github.io/hng-13-resume/og-image.svg"
+    }
+  },
+  "navigation": [
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Process", "href": "#process" },
+    { "label": "Reviews", "href": "#reviews" },
+    {
+      "label": "Leave a Review",
+      "href": "#reviews",
+      "variant": "cta",
+      "icon": "↘"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Performance-focused frontend engineering with real project proof",
+    "title": "I build <span class=\"highlight\">fast, accessible</span> interfaces that survive production.",
+    "lead": "I am a frontend engineer and mobile developer who cares about <strong>semantic HTML, real-world performance, and UI consistency</strong> across frameworks. During the HNG internship I delivered production-grade projects in React, Vue, Twig, Next.js, Expo, Convex, and Supabase.",
+    "actions": [
+      { "label": "View HNG project work", "href": "#projects", "variant": "primary" },
+      { "label": "Leave feedback on my work", "href": "#reviews", "variant": "ghost" }
+    ],
+    "meta": [
+      {
+        "label": "Primary focus",
+        "value": "<strong>Frontend and mobile</strong> with performance and accessibility as defaults."
+      },
+      {
+        "label": "Tooling",
+        "value": "React, React Native, Next.js, Vue, Twig, Expo, Convex, Supabase, Tailwind, Chakra UI."
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Core skills",
+    "tag": "HNG Internship",
+    "items": [
+      { "label": "Accessibility", "strength": "Advanced" },
+      { "label": "Performance", "strength": "Advanced" },
+      { "label": "React / RN / Expo", "strength": "Advanced" },
+      { "label": "Next.js", "strength": "Advanced" },
+      { "label": "Vue / Twig", "strength": "Intermediate" },
+      { "label": "Convex / Supabase", "strength": "Intermediate" },
+      { "label": "Laravel", "strength": "Intermediate" }
+    ]
+  },
+  "projects": {
+    "heading": "HNG projects",
+    "items": [
+      {
+        "kicker": "Stage 0-1 • Web",
+        "title": "Multi-page Profile Card",
+        "description": "A semantic profile site optimized for Lighthouse and automated tests.",
+        "tags": ["HTML", "CSS", "Accessibility"],
+        "bullets": [
+          "Split the narrative into 3 themed pages connected with skip links and persistent breadcrumbs.",
+          "Shipped axe-clean markup and 98+ Lighthouse scores by auditing contrast, focus order, and aria usage.",
+          "Playwright smoke tests ensure responsive layouts hold up down to 320px devices."
+        ],
+        "score": "16/20"
+      },
+      {
+        "kicker": "Stage 2 • Web",
+        "title": "myTickets Manager",
+        "description": "A CRUD app implemented in three frameworks with shared design tokens.",
+        "tags": ["React", "Vue", "Twig"],
+        "bullets": [
+          "Abstracted table/form/toast primitives so React, Vue, and Twig share the same UI contract.",
+          "Backed every mutation with JSON Schema validation + Faker fixtures to mimic a live ticket API.",
+          "Audited performance budgets to keep each build under 80 KB gzipped."
+        ],
+        "score": "51/60"
+      },
+      {
+        "kicker": "Stage 3A • Web",
+        "title": "Audiophile E-commerce (Next.js + Convex)",
+        "description": "A pixel-perfect storefront with a full checkout flow, order persistence, and transactional email, following an atomic design component system.",
+        "tags": ["Next.js", "TypeScript", "Convex", "Chakra UI"],
+        "bullets": [
+          "Typed API routes with Zod validation and Redux-based cart.",
+          "Atomic components and layout templates tuned for performance."
+        ],
+        "score": "27/30"
+      },
+      {
+        "kicker": "Stage 3B • Mobile",
+        "title": "Todo App (Expo + Convex)",
+        "description": "A cross-platform todo app with real-time sync, theme switching, and drag-and-drop.",
+        "tags": ["React Native", "Expo", "Convex"],
+        "bullets": [
+          "Convex live queries keep tasks synced across devices without manual polling.",
+          "Reanimated + gesture-handler deliver drag-and-drop reordering with subtle haptics.",
+          "Offline queue retries pending writes so no todos vanish if the network drops."
+        ],
+        "score": "27/30"
+      },
+      {
+        "kicker": "Stage 4+ • Mobile",
+        "title": "Framez Social App (Expo + Supabase)",
+        "description": "A social posting app with authenticated feed, media uploads, likes, and notifications.",
+        "tags": ["Expo Router", "Supabase", "Auth", "Notifications"],
+        "bullets": [
+          "Supabase auth + row level security lock down user data while still enabling public discovery.",
+          "Expo Router screens stream next feed batch before users scroll for perceived instant loading.",
+          "Push notification preferences let users pick digests, mentions only, or mute entirely."
+        ],
+        "score": "TBD"
+      }
+    ]
+  },
+  "process": {
+    "ariaLabel": "How I approach frontend work",
+    "cards": [
+      {
+        "title": "How I approach frontend development",
+        "description": "Every project starts with clarity. I define the outcome, map a single primary user path, then design the UI and architecture around that path.",
+        "bullets": [
+          "<strong>Design-led architecture.</strong> Components and routes follow a clear inventory rather than improvisation.",
+          "<strong>Performance from the start.</strong> Minimal dependencies, simple layouts, fast first paint.",
+          "<strong>Accessibility baked in.</strong> Semantics, focus, labels, and error messaging are part of the initial build."
+        ]
+      },
+      {
+        "title": "Stacks I am confident with",
+        "description": "On the web, I work comfortably with React, Next.js, Vue, Twig templates, and modern vanilla JavaScript. On mobile, I work with React Native and Expo, backed by Convex or Supabase for real-time data."
+      }
+    ]
+  },
+  "reviewsSection": {
+    "heading": "Reviews",
+    "formTitle": "Leave a Review",
+    "formHelper": "Let me know what you think of my work or this portfolio.",
+    "submitLabel": "Send Review"
+  },
+  "footer": {
+    "text": "© {{year}} @iyoolaoyabiyi. Built with a focus on performance and accessibility.",
+    "backToTopLabel": "Back to top",
+    "backToTopHref": "#top"
+  }
+}

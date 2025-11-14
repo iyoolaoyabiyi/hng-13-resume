@@ -1,63 +1,3 @@
-:root {
-  color-scheme: dark;
-  --bg: #050608;
-  --bg-elevated: #101119;
-  --bg-soft: #151623;
-  --accent: #f44336;
-  --accent-soft: rgba(244, 67, 54, 0.16);
-  --accent-strong: #ff7262;
-  --text: #f7f7fb;
-  --muted: #a2a2b8;
-  --border: #262738;
-  --focus: #ffb74d;
-  --surface-gradient-start: #282a41;
-  --surface-gradient-end: #0f101a;
-  --chip-bg: rgba(12, 13, 22, 0.9);
-  --eyebrow-bg: rgba(15, 16, 25, 0.9);
-  --eyebrow-text: #bbbcd6;
-  --tag-bg: rgba(9, 10, 18, 0.8);
-  --tag-border: rgba(255, 255, 255, 0.1);
-  --review-name: #f4f4ff;
-  --skill-strength: #fccc8f;
-  --bento-hover-start: rgba(52, 55, 87, 0.98);
-  --bento-hover-end: rgba(11, 12, 20, 1);
-  --header-bg: linear-gradient(180deg, rgba(5, 6, 8, 0.95), rgba(5, 6, 8, 0.8));
-  --rating-color: #ffd54f;
-  --hero-strong: #e6e6f5;
-  --radius-sm: 8px;
-  --radius-lg: 16px;
-  --radius-pill: 999px;
-  --shadow-soft: 0 12px 32px rgba(5, 7, 17, 0.35);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  --max-width: 1120px;
-  --transition-fast: 150ms ease-out;
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --bg: #f4f6fb;
-  --bg-elevated: #ffffff;
-  --bg-soft: #dfe6fb;
-  --text: #080812;
-  --muted: #52556b;
-  --border: #d6dcf3;
-  --shadow-soft: 0 10px 24px rgba(40, 60, 120, 0.18);
-  --surface-gradient-start: #ffffff;
-  --surface-gradient-end: #f0f3ff;
-  --chip-bg: rgba(240, 243, 255, 0.95);
-  --eyebrow-bg: rgba(255, 255, 255, 0.88);
-  --eyebrow-text: #55576e;
-  --tag-bg: rgba(8, 9, 20, 0.05);
-  --tag-border: #c9d2f8;
-  --review-name: #1f1f33;
-  --skill-strength: #b25400;
-  --bento-hover-start: #fff5ed;
-  --bento-hover-end: #ffe7d6;
-  --header-bg: linear-gradient(180deg, rgba(244, 246, 251, 0.95), rgba(244, 246, 251, 0.85));
-  --rating-color: #b25b00;
-  --hero-strong: #1d243d;
-}
-
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
@@ -505,11 +445,15 @@ nav {
   margin-top: auto;
   padding-top: 0.55rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   font-size: 0.78rem;
 }
 .rating { color: var(--rating-color); font-weight: 500; }
+.project-score {
+  color: var(--rating-color);
+  font-weight: 600;
+}
 .project-link { color: #c0c0ff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 /* === REVIEWS SECTION STYLES === */

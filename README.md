@@ -2,6 +2,11 @@
 Frontend Engineer & Mobile Developer  
 📍 Remote (Nigeria) · 🌐 https://iyoolaoyabiyi.github.io/hng-13-resume/ · 👨🏽‍💻 @iyoolaoyabiyi on GitHub
 
+## Customizing the template
+- Update `tokens.css` with your preferred palette or typography tokens to instantly restyle both light/dark themes.
+- Edit `content.json` to swap in your own navigation links, hero copy, projects, process notes, and footer text without touching HTML.
+- The UI pulls from that JSON at runtime, so you can keep multiple versions of your resume site by swapping the data file.
+
 ## Professional Profile
 - Performance-focused engineer pairing semantic HTML with modern JS frameworks to ship resilient web/mobile products.
 - Comfortable building across React, Next.js, Vue, Twig, Expo, React Native, Convex, and Supabase.
