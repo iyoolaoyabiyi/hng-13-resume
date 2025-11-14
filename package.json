@@ -1,0 +1,13 @@
+{
+  "name": "resume-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "convex:dev": "convex dev",
+    "convex:deploy": "convex deploy",
+    "convex:codegen": "convex codegen"
+  },
+  "dependencies": {
+    "convex": "^1.12.0"
+  }
+}
