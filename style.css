@@ -23,6 +23,7 @@
   --bento-hover-end: rgba(11, 12, 20, 1);
   --header-bg: linear-gradient(180deg, rgba(5, 6, 8, 0.95), rgba(5, 6, 8, 0.8));
   --rating-color: #ffd54f;
+  --hero-strong: #e6e6f5;
   --radius-sm: 8px;
   --radius-lg: 16px;
   --radius-pill: 999px;
@@ -54,6 +55,7 @@
   --bento-hover-end: #ffe7d6;
   --header-bg: linear-gradient(180deg, rgba(244, 246, 251, 0.95), rgba(244, 246, 251, 0.85));
   --rating-color: #b25b00;
+  --hero-strong: #1d243d;
 }
 
 * { box-sizing: border-box; }
@@ -332,7 +334,7 @@ nav {
   color: transparent;
 }
 .hero-lead { color: var(--muted); font-size: 0.98rem; max-width: 36rem; }
-.hero-lead strong { color: #e6e6f5; font-weight: 500; }
+.hero-lead strong { color: var(--hero-strong); font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.4rem; }
 .btn-primary, .btn-ghost {
   display: inline-flex;
