@@ -102,7 +102,7 @@ function renderReviews(reviews) {
       <article class="review-card">
         <header class="review-header">
           <span>${safeName}</span>
-          ${review.rating ? `<span class="review-rating">${stars}</span>` : ""}
+          ${review.rating ? `<span class="rating">${stars}</span>` : ""}
         </header>
         <p class="review-body">${safeComment}</p>
       </article>

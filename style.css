@@ -22,6 +22,7 @@
   --bento-hover-start: rgba(52, 55, 87, 0.98);
   --bento-hover-end: rgba(11, 12, 20, 1);
   --header-bg: linear-gradient(180deg, rgba(5, 6, 8, 0.95), rgba(5, 6, 8, 0.8));
+  --rating-color: #ffd54f;
   --radius-sm: 8px;
   --radius-lg: 16px;
   --radius-pill: 999px;
@@ -52,6 +53,7 @@
   --bento-hover-start: #fff5ed;
   --bento-hover-end: #ffe7d6;
   --header-bg: linear-gradient(180deg, rgba(244, 246, 251, 0.95), rgba(244, 246, 251, 0.85));
+  --rating-color: #b25b00;
 }
 
 * { box-sizing: border-box; }
@@ -431,7 +433,7 @@ nav {
   align-items: center;
   font-size: 0.78rem;
 }
-.rating { color: #ffd54f; font-weight: 500; }
+.rating { color: var(--rating-color); font-weight: 500; }
 .project-link { color: #c0c0ff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 /* === REVIEWS SECTION STYLES === */
