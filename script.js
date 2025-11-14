@@ -9,6 +9,9 @@ const metaConvexUrl = document.querySelector('meta[name="convex-url"]');
 const themeToggle = document.getElementById("theme-toggle");
 const themeToggleIcon = themeToggle?.querySelector(".theme-toggle-icon");
 const themeToggleLabel = themeToggle?.querySelector(".theme-toggle-label");
+const navToggle = document.getElementById("nav-toggle");
+const siteHeader = document.querySelector(".site-header");
+const navLinks = document.querySelectorAll(".nav-list a");
 const THEME_STORAGE_KEY = "theme";
 
 if (yearEl) {
@@ -25,6 +28,7 @@ if (CONVEX_URL) {
   showMissingConfigMessage();
 }
 
+initializeNavToggle();
 initializeThemeToggle();
 
 reviewForm?.addEventListener("submit", async (event) => {
@@ -181,6 +185,34 @@ function initializeThemeToggle() {
   media.addEventListener("change", (event) => {
     if (localStorage.getItem(THEME_STORAGE_KEY)) return;
     applyTheme(event.matches ? "dark" : "light");
+  });
+}
+
+function initializeNavToggle() {
+  if (!navToggle || !siteHeader) return;
+
+  const setMenuState = (isOpen) => {
+    siteHeader.dataset.menuOpen = String(isOpen);
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = siteHeader.dataset.menuOpen === "true";
+    setMenuState(!isOpen);
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.matchMedia("(max-width: 719px)").matches) {
+        setMenuState(false);
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 720px)").matches) {
+      setMenuState(false);
+    }
   });
 }
 

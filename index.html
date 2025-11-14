@@ -54,31 +54,40 @@
 
   <div class="page">
     <div class="page-inner">
-      <header class="site-header">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true"><span>Iyo</span></div>
-          <div class="brand-text">
-            <span class="brand-name">@iyoolaoyabiyi</span>
-            <span class="brand-tagline">Frontend engineer & Mobile developer</span>
+      <header class="site-header" data-menu-open="false">
+        <div class="site-header__left">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true"><span>Iyo</span></div>
+            <div class="brand-text">
+              <span class="brand-name">@iyoolaoyabiyi</span>
+              <span class="brand-tagline">Frontend engineer & Mobile developer</span>
+            </div>
           </div>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation-list">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
         </div>
-        <nav aria-label="Primary">
-          <ul class="nav-list">
+        <nav aria-label="Primary" id="primary-navigation">
+          <ul class="nav-list" id="primary-navigation-list">
             <li><a class="nav-link" href="#projects">Projects</a></li>
             <li><a class="nav-link" href="#skills">Skills</a></li>
             <li><a class="nav-link" href="#process">Process</a></li>
             <li><a class="nav-link" href="#reviews">Reviews</a></li>
+            <li>
+              <a class="nav-link nav-link--cta" href="#reviews">
+                Leave a Review
+                <span aria-hidden="true">↘</span>
+              </a>
+            </li>
           </ul>
-          <a class="nav-cta" href="#reviews">
-            Leave a Review
-            <span aria-hidden="true">↘</span>
-          </a>
-          <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
-            <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
-            <span class="theme-toggle-label">Light mode</span>
-          </button>
         </nav>
       </header>
+      <button id="theme-toggle" class="theme-toggle theme-toggle--floating" type="button" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
+        <span class="theme-toggle-label">Light mode</span>
+      </button>
 
       <main id="main" class="content-stack">
         <section class="hero" aria-labelledby="hero-title">
